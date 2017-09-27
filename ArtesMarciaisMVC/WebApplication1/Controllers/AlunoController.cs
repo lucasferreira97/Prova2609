@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using System.Data.Entity;
 
 namespace WebApplication1.Controllers
 {
@@ -24,14 +25,14 @@ namespace WebApplication1.Controllers
         // GET: /Aluno/
         public ActionResult Index()
         {
-            var alunos = _context.Alunos.ToList();
+            var alunos = _context.Alunos.Include(a => a.TipoDeAssociacao.Nome).Include(a => a.Faixa.Nome);
             return View(alunos);
         }
 
         public ActionResult Details(int id)
         {
             var aluno = _context.Alunos.SingleOrDefault(a => a.Id == id);
-
+            
             if (aluno == null)
                 return HttpNotFound();
 

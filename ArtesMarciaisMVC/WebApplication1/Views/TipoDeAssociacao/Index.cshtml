@@ -24,10 +24,11 @@ else
             @foreach (var tps in Model)
             {
                 <tr>
-                    <td>@Html.ActionLink(@tps.Nome, "Details", new {aluno.Id})</td>
+                    <td>@Html.ActionLink(@tps.Nome, "Details", new {tps.Id})</td>
                     <td>@tps.Periodo</td>
                     <td>@tps.Mensalidade</td>>
                 </tr>
             }
         </tbody>
     </table>
+}
