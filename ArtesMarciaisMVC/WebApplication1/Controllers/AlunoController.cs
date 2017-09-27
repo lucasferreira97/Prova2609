@@ -25,13 +25,13 @@ namespace WebApplication1.Controllers
         // GET: /Aluno/
         public ActionResult Index()
         {
-            var alunos = _context.Alunos.Include(a => a.TipoDeAssociacao.Nome).Include(a => a.Faixa.Nome);
+            var alunos = _context.Aluno.Include(c => c.Faixa).Include(c => c.TipoDeAssociacao).ToList();
             return View(alunos);
         }
 
         public ActionResult Details(int id)
         {
-            var aluno = _context.Alunos.SingleOrDefault(a => a.Id == id);
+            var aluno = _context.Aluno.Include(c => c.Faixa).Include(c => c.TipoDeAssociacao).SingleOrDefault(m => m.Id == id);
             
             if (aluno == null)
                 return HttpNotFound();
