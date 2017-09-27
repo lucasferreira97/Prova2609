@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebApplication1.Models.Faixa>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Faixas</h2>
+
+@if (!Model.Any())
+{
+    <p>Nenhuma faixa criada ainda.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Grau</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var faixa in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(@faixa.Nome, "Details", new {faixa.Id})</td>
+                    <td>@faixa.Graus</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
